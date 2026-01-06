@@ -169,10 +169,6 @@ print(result)
 # Output: <start_function_call>call:play_song{song_name:<escape>Bohemian Rhapsody<escape>}<end_function_call>
 ```
 
-### iOS/Android
-
-Models are compatible with mobile deployment. See [HuggingFace deployment guides](https://huggingface.co/docs) for platform-specific instructions.
-
 ## 🎯 Key Findings
 
 **What Works**:
