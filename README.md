@@ -27,7 +27,8 @@ Improved model performance from **75% → 100%** accuracy using a gradual scalin
 
 ```bash
 # Clone the repository
-cd music_app_training
+git clone https://github.com/jageenshukla/functiongemma-finetuning-lora.git
+cd functiongemma-finetuning-lora
 
 # Run setup script
 chmod +x setup.sh
@@ -113,7 +114,7 @@ Output: search_music(query="rock songs")
 ## 📁 Project Structure
 
 ```
-music_app_training/
+functiongemma-finetuning-lora/
 ├── scripts/
 │   ├── generate_4func_dataset.py   # Generate training data
 │   ├── train_4func.py              # Train the model
