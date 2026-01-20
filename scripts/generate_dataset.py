@@ -133,8 +133,6 @@ def main():
     print(f"  Training examples: {len(train_examples)}")
     print(f"  Evaluation examples: {len(eval_examples)}")
     print(f"  Functions: 2 (check_pin, check_language)")
-    print("\nNext step:")
-    print("  python scripts/train_2func.py")
     print("=" * 80)
 
 if __name__ == "__main__":
