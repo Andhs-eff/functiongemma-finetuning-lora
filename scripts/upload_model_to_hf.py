@@ -12,24 +12,36 @@ Prerequisites:
        python upload_model_to_hf.py
 
 Usage:
+  # Windows (cmd.exe)
+  set MODEL_PATH=path\\to\\my\\model
   python upload_model_to_hf.py
 
+  # PowerShell
+  $env:MODEL_PATH="path\\to\\my\\model"
+  python upload_model_to_hf.py
+
+  # Linux/macOS (bash/zsh)
+  export MODEL_PATH="path/to/my/model"
+  python3 upload_model_to_hf.py
+
 Notes:
-  - MODEL_PATH is currently a placeholder. Point it to your saved model folder.
+  - MODEL_PATH is read from the environment.
   - REPO_NAME must be in the form "namespace/repo".
   - This script uses `from huggingface_hub import login; login()` for auth.
 """
 
 from __future__ import annotations
 
+import os
 from pathlib import Path
 
 from huggingface_hub import HfApi, create_repo, login
 from transformers import AutoConfig, AutoTokenizer, AutoModelForCausalLM
 
 
-# TODO: set this to your trained model directory (the folder containing config.json)
-MODEL_PATH = "path/to/my/model"
+# Read from environment so you can run:
+#   set MODEL_PATH=... && python upload_model_to_hf.py
+MODEL_PATH = os.environ.get("MODEL_PATH", "")
 
 # Target repo on Hugging Face Hub
 REPO_NAME = "Andhs/fgemma-pin-language"
@@ -39,10 +51,17 @@ PRIVATE = False
 
 # If you prefer non-interactive auth, you can set HF_TOKEN in your environment.
 # Otherwise, `login()` below will prompt you.
-HF_TOKEN = None
+HF_TOKEN = os.environ.get("HF_TOKEN")
 
 
 def main() -> None:
+    if not MODEL_PATH:
+        raise ValueError(
+            "MODEL_PATH is not set. Provide it via environment variable, e.g.\n"
+            "  set MODEL_PATH=path\\to\\my\\model\n"
+            "  python upload_model_to_hf.py"
+        )
+
     model_dir = Path(MODEL_PATH)
     if not model_dir.exists():
         raise FileNotFoundError(

@@ -15,23 +15,35 @@ Auth:
   This script uses `from huggingface_hub import login; login()`.
 
 Usage:
+  # Windows (cmd.exe)
+  set ONNX_DIR=path\\to\\onnx\\export
   python upload_onnx_to_hf.py
 
+  # PowerShell
+  $env:ONNX_DIR="path\\to\\onnx\\export"
+  python upload_onnx_to_hf.py
+
+  # Linux/macOS (bash/zsh)
+  export ONNX_DIR="path/to/onnx/export"
+  python3 upload_onnx_to_hf.py
+
 Notes:
-  - ONNX_DIR should point to the directory containing your .onnx files.
+  - ONNX_DIR is read from the environment.
   - If you also have tokenizer/config files in the same directory, they will be
     uploaded too.
 """
 
 from __future__ import annotations
 
+import os
 from pathlib import Path
 
 from huggingface_hub import HfApi, create_repo, login
 
 
-# TODO: set this to your ONNX export directory
-ONNX_DIR = "path/to/my/model"
+# Read from environment so you can run:
+#   set ONNX_DIR=... && python upload_onnx_to_hf.py
+ONNX_DIR = os.environ.get("ONNX_DIR", "")
 
 # Target repo for ONNX artifacts
 REPO_NAME = "Andhs/fgemma-pin-language-ONNX"
@@ -44,6 +56,13 @@ COMMIT_MESSAGE = "Upload ONNX model"
 
 
 def main() -> None:
+    if not ONNX_DIR:
+        raise ValueError(
+            "ONNX_DIR is not set. Provide it via environment variable, e.g.\n"
+            "  set ONNX_DIR=path\\to\\onnx\\export\n"
+            "  python upload_onnx_to_hf.py"
+        )
+
     onnx_dir = Path(ONNX_DIR)
     if not onnx_dir.exists():
         raise FileNotFoundError(f"ONNX_DIR does not exist: {onnx_dir}")
