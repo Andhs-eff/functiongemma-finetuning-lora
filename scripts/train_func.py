@@ -83,6 +83,7 @@ def main():
         save_strategy="epoch",
         save_total_limit=2,
         report_to="none",
+        #bf16=False #If CPU training
     )
 
     # Formatting function for SFTTrainer
