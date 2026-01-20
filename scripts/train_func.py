@@ -113,6 +113,9 @@ def main():
     # 1. Merge the weights
     print("Merging LoRA weights into base model...")
     merged_model = trainer.model.merge_and_unload()
+    
+    # Cast to half-precision (FP16 or BF16) before saving
+    merged_model = merged_model.to(torch.float16)
 
     # 2. Save the full model
     final_merged_path = output_dir / "full_model"
