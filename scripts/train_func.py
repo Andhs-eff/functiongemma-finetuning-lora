@@ -109,7 +109,20 @@ def main():
 
     # Train
     trainer.train()
+    
+    # 1. Merge the weights
+    print("Merging LoRA weights into base model...")
+    merged_model = trainer.model.merge_and_unload()
 
+    # 2. Save the full model
+    final_merged_path = output_dir / "full_model"
+    merged_model.save_pretrained(final_merged_path)
+    tokenizer.save_pretrained(final_merged_path)
+
+    print(f"✅ Full standalone model saved to: {final_merged_path}")
+    
+    '''
+    
     # Save final model
     final_model_path = output_dir / "final"
     print(f"\n💾 Saving final model to {final_model_path}")
@@ -119,6 +132,6 @@ def main():
     print("=" * 80)
     print(f"\n📂 Model saved to: {final_model_path}")
     print("=" * 80)
-
+    '''
 if __name__ == "__main__":
     main()
