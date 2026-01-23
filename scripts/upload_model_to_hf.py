@@ -47,7 +47,7 @@ MODEL_PATH = os.environ.get("MODEL_PATH", "")
 REPO_NAME = "Andhs/fgemma-pin-language"
 
 # Optional: set to True if you want the repo to be private
-PRIVATE = False
+PRIVATE = True
 
 # If you prefer non-interactive auth, you can set HF_TOKEN in your environment.
 # Otherwise, `login()` below will prompt you.

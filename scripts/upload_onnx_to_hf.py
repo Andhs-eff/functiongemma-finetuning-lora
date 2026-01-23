@@ -49,7 +49,7 @@ ONNX_DIR = os.environ.get("ONNX_DIR", "")
 REPO_NAME = "Andhs/fgemma-pin-language-ONNX"
 
 # Optional: set to True if you want the repo to be private
-PRIVATE = False
+PRIVATE = True
 
 # Optional: commit message
 COMMIT_MESSAGE = "Upload ONNX model"
