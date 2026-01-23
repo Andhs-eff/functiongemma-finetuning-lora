@@ -37,6 +37,7 @@ from pathlib import Path
 
 from huggingface_hub import HfApi, create_repo, login
 from transformers import AutoConfig, AutoTokenizer, AutoModelForCausalLM
+import torch
 
 
 # Read from environment so you can run:
@@ -105,7 +106,7 @@ def main() -> None:
     print("Loading config/tokenizer/model for validation...")
     _ = AutoConfig.from_pretrained(model_dir)
     tokenizer = AutoTokenizer.from_pretrained(model_dir)
-    model = AutoModelForCausalLM.from_pretrained(model_dir)
+    model = AutoModelForCausalLM.from_pretrained(model_dir, torch_dtype=torch.float16)
 
     # Push to hub
     print("Pushing model...")
