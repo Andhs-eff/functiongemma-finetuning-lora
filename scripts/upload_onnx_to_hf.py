@@ -108,7 +108,10 @@ def main() -> None:
     info = api.repo_info(REPO_NAME)
     print()
     print("✅ Upload complete")
-    print(f"Repo URL: {info.url}")
+    print(f"Repo URL: https://huggingface.co/{REPO_NAME}")
+    print(f"Repo id: {info.id}")
+    print(f"Private: {info.private}")
+    print(f"SHA: {info.sha}")
 
 
 if __name__ == "__main__":

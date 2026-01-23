@@ -119,8 +119,8 @@ def main():
 
     # 2. Save the full model
     final_merged_path = output_dir / "full_model"
-    merged_model.save_pretrained(final_merged_path)
-    tokenizer.save_pretrained(final_merged_path)
+    merged_model.save_pretrained(final_merged_path, safe_serialization=True)
+    tokenizer.save_pretrained(final_merged_path, safe_serialization=True)
 
     print(f"✅ Full standalone model saved to: {final_merged_path}")
     
