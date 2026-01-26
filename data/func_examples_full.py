@@ -260,6 +260,7 @@ FUNC_EXAMPLES = [
     ("What time is it?", "check_pin", {}),
     ("Tell me a joke", "check_pin", {}),
     ("What's the weather like?", "check_pin", {}),
+    ("The weather is nice today", "check_pin", {}),
 
     # check language - 50 examples with irrelevant input
     ("Hello", "check_language", {}),
@@ -311,4 +312,5 @@ FUNC_EXAMPLES = [
     ("What time is it?", "check_language", {}),
     ("Tell me a joke", "check_language", {}),
     ("What's the weather like?", "check_language", {}),
+    ("The weather is nice today", "check_pin", {}),
 ]
