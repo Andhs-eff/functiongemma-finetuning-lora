@@ -10,7 +10,7 @@ from transformers import AutoTokenizer
 project_root = Path(__file__).parent.parent
 sys.path.insert(0, str(project_root))
 
-from data.func_examples import FUNC_EXAMPLES
+from data.func_examples_full import FUNC_EXAMPLES
 
 # 2 functions
 TWO_FUNCTIONS = [
